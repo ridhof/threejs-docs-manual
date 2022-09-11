@@ -1,25 +1,34 @@
+import {
+  BoxGeometry,
+  Mesh,
+  MeshBasicMaterial,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from 'three';
+
 function meshBasicMaterial(color) {
-  return new THREE.MeshBasicMaterial({ color });
+  return new MeshBasicMaterial({ color });
 }
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
+const scene = new Scene();
+const camera = new PerspectiveCamera(
   75, 
   window.innerWidth / window.innerHeight, 
   0.1, 
   1000
 );
 
-const renderer = new THREE.WebGLRenderer();
+const renderer = new WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-const geometry = new THREE.BoxGeometry(1, 1, 1);
+const geometry = new BoxGeometry(1, 1, 1);
 const greenMaterial = meshBasicMaterial(0x00ff00);
 const redMaterial = meshBasicMaterial(0xff0000);
-const greenCube = new THREE.Mesh(geometry, greenMaterial);
-const redCube = new THREE.Mesh(geometry, redMaterial);
-const yellowCube = new THREE.Mesh(
+const greenCube = new Mesh(geometry, greenMaterial);
+const redCube = new Mesh(geometry, redMaterial);
+const yellowCube = new Mesh(
   geometry, 
   meshBasicMaterial(0xffff00)
 );
