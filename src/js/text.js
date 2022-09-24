@@ -9,6 +9,7 @@ import {
   PointLight,
   Scene,
   Vector3,
+  WebGLRenderer,
 } from 'three';
 import { FontLoader } from 'three/addons/loaders/FontLoader.js';
 import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
@@ -33,6 +34,22 @@ export function setupTextGeometry() {
   const scene = new Scene();
   scene.background = new Color(0x000000);
   scene.fog = new Fog(0x000000, 250, 1400);
+
+  const dirLight = new DirectionalLight(0xffffff, 0.125);
+  dirLight.position.set(0, 0, 1).normalize();
+  scene.add(dirLight);
+
+  const pointLight = new PointLight(0xffffff, 1.5);
+  pointLight.position.set(0, 100, 90);
+  scene.add(pointLight);
+
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+
+  const renderer = new WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  container.appendChild(renderer.domElement);
 
   const loader = new FontLoader();
   loader.load('../helvetiker_regular.typeface.json', function (font) {
@@ -68,5 +85,9 @@ export function setupTextGeometry() {
     group.add(textMesh);
 
     scene.add(group);
+    camera.lookAt(cameraTarget);
+
+    renderer.clear();
+    renderer.render(scene, camera);
   });
 }
