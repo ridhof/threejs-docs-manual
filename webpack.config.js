@@ -15,7 +15,7 @@ const config = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      title: 'Three.js Management - Development'
+      title: 'Three.js Management - Learning'
     }),
   ],
   output: {
