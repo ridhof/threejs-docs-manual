@@ -1,11 +1,18 @@
 import css from './style.css';
-import { checkWebGL, setupDomText, setupLine, setupTextGeometry } from './js';
+import { 
+  animateModel,
+  checkWebGL, 
+  setupDomText, 
+  setupLine, 
+  setupTextGeometry 
+} from './js';
 
 function main() {
   checkWebGL();
   // setupLine();
   // setupDomText();
-  setupTextGeometry();
+  // setupTextGeometry();
+  animateModel();
 }
 
 main();
