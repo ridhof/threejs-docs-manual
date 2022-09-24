@@ -6,6 +6,7 @@ import {
   Scene,
   WebGLRenderer,
 } from 'three';
+import './style.css';
 
 function meshBasicMaterial(color) {
   return new MeshBasicMaterial({ color });
