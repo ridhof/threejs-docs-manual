@@ -1,3 +1,4 @@
+// officially borked, will be fixed later on. thanks fp.
 import {
   BoxGeometry,
   Mesh,
@@ -11,7 +12,7 @@ function meshBasicMaterial(color) {
   return new MeshBasicMaterial({ color });
 }
 
-function setup() {
+export function setupCube() {
   const scene = new Scene();
   const camera = new PerspectiveCamera(
     75, 
@@ -42,24 +43,31 @@ function setup() {
   yellowCube.position.y = -1.5;
   camera.position.z = 5;
 
-  return { greenCube, redCube, yellowCube, scene, camera };
+  return { 
+    greenCube, 
+    redCube, 
+    yellowCube, 
+    scene, 
+    camera, 
+    renderer 
+  };
 }
 
 function rotate(cube, x, y) {
   cube.rotation.x += x;
   cube.rotation.y += y;
 };
-export function animateCube() {
+
+export function animateCube(
+  greenCube,
+  redCube,
+  yellowCube,
+  scene,
+  camera,
+  renderer,
+) {
   requestAnimationFrame(animateCube);
 
-  const {
-    greenCube,
-    redCube,
-    yellowCube,
-    scene,
-    camera
-  } = setup();
-  
   rotate(greenCube, 0.01, 0.01);
   rotate(redCube, 0.01, 0.01);
   rotate(yellowCube, 0.01, 0.01);
